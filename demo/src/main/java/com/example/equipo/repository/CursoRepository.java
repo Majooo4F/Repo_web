@@ -1,8 +1,8 @@
 package com.example.equipo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.equipo.entity.Curso;
+import com.example.equipo.entity.Cursos;
 
-public interface CursoRepository extends JpaRepository<Curso, Long> {
+public interface CursoRepository extends JpaRepository<Cursos, Integer> {
 
 }
