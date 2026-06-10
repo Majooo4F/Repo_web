@@ -15,21 +15,18 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/cursos")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class CursosController {
 
     private final CursoService cursoService;
 
-    // GET /api/cursos
-    @GetMapping
+    @GetMapping("/api/cursos/listar")
     public ResponseEntity<List<CursoDTO>> listar() {
         return ResponseEntity.ok(cursoService.listarTodos());
     }
 
-    // GET /api/cursos/{id}
-    @GetMapping("/{id}")
+    @GetMapping("/api/cursos/buscar/{id}")
     public ResponseEntity<?> obtener(@PathVariable Integer id) {
         try {
             return ResponseEntity.ok(cursoService.obtenerPorId(id));
@@ -39,15 +36,13 @@ public class CursosController {
         }
     }
 
-    // POST /api/cursos  — @Valid activa las validaciones del DTO
-    @PostMapping
+    @PostMapping("/api/cursos/crear")
     public ResponseEntity<?> crear(@Valid @RequestBody CursoDTO cursoDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(cursoService.crear(cursoDTO));
     }
 
-    // PUT /api/cursos/{id}
-    @PutMapping("/{id}")
+    @PutMapping("/api/cursos/editar/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Integer id,
                                         @Valid @RequestBody CursoDTO cursoDTO) {
         try {
@@ -58,8 +53,7 @@ public class CursosController {
         }
     }
 
-    // DELETE /api/cursos/{id}  — soft-delete, el frontend pide confirmación antes
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/cursos/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Integer id) {
         try {
             cursoService.eliminar(id);

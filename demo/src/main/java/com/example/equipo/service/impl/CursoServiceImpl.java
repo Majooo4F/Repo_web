@@ -67,11 +67,9 @@ public class CursoServiceImpl implements CursoService {
     @Transactional
     public void eliminar(Integer id) {
         Cursos curso = buscarOLanzar(id);
-        curso.setActivo(false);   // soft-delete: desaparece del catálogo
+        curso.setActivo(false);
         cursoRepository.save(curso);
     }
-
-    // ── helpers ───────────────────────────────────────────────────────────────
 
     private Cursos buscarOLanzar(Integer id) {
         return cursoRepository.findById(id)
