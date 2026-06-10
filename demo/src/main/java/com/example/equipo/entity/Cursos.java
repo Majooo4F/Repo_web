@@ -20,19 +20,15 @@ public class Cursos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     @Column(length = 100, nullable = false)
     private String titulo;
 
- 
     @Column(length = 100, nullable = false)
     private String descripcion;
 
-  
     @Column(length = 255, nullable = false)
     private String imagen;
 
-   
     @Column(length = 255, nullable = false)
     private String categoria;
 
@@ -46,7 +42,6 @@ public class Cursos {
 
     private Integer duracion;
 
-   
     @Column(nullable = false)
     private String autor;
 
