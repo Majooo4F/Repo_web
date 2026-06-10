@@ -4,7 +4,7 @@ import com.example.equipo.dto.MisCursoDTO;
 import com.example.equipo.entity.Cursos;
 import com.example.equipo.entity.Inscripcion;
 import com.example.equipo.entity.Usuarios;
-import com.example.equipo.repository.CursosRepository;
+import com.example.equipo.repository.CursoRepository;
 import com.example.equipo.repository.InscripcionRepository;
 import com.example.equipo.repository.UsuariosRepository;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
  * Lógica de HU09: listar los cursos en los que el estudiante está inscrito.
  *
  * Como Inscripcion guarda idCurso (Integer) y NO una relación @ManyToOne,
- * por cada inscripción activa hay que cargar el curso desde CursosRepository.
+ * por cada inscripción activa hay que cargar el curso desde CursoRepository.
  */
 @Service
 public class MisCursosService {
@@ -26,14 +26,14 @@ public class MisCursosService {
 
     private final UsuariosRepository usuariosRepository;
     private final InscripcionRepository inscripcionRepository;
-    private final CursosRepository cursosRepository;
+    private final CursoRepository cursoRepository;
 
     public MisCursosService(UsuariosRepository usuariosRepository,
                             InscripcionRepository inscripcionRepository,
-                            CursosRepository cursosRepository) {
+                            CursoRepository cursoRepository) {
         this.usuariosRepository = usuariosRepository;
         this.inscripcionRepository = inscripcionRepository;
-        this.cursosRepository = cursosRepository;
+        this.cursoRepository = cursoRepository;
     }
 
     /**
@@ -51,7 +51,7 @@ public class MisCursosService {
 
         List<MisCursoDTO> resultado = new ArrayList<>();
         for (Inscripcion inscripcion : inscripciones) {
-            cursosRepository.findById(inscripcion.getIdCurso())
+            cursoRepository.findById(inscripcion.getIdCurso())
                     .ifPresent(curso -> resultado.add(aDTO(curso, inscripcion)));
         }
         return resultado;
