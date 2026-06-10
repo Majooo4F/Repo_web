@@ -1,8 +1,12 @@
 package com.example.equipo.service;
 
-import org.springframework.stereotype.Service;
+import com.example.equipo.dto.CursoDTO;
+import java.util.List;
 
-@Service
-public class CursoService {
-
+public interface CursoService {
+    List<CursoDTO> listarTodos();
+    CursoDTO obtenerPorId(Integer id);
+    CursoDTO crear(CursoDTO cursoDTO);
+    CursoDTO actualizar(Integer id, CursoDTO cursoDTO);
+    void eliminar(Integer id);
 }
