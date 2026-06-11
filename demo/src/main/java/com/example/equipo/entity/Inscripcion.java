@@ -25,4 +25,3 @@ public class Inscripcion {
     @Column(nullable = false)
     private Integer estado;
 }
-
