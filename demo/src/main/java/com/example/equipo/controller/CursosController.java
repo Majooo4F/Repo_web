@@ -39,7 +39,7 @@ public class CursosController {
         }
     }
 
-    @PostMapping("/api/cursos/crear")
+    @PostMapping("/api/cursos/crear/a")
     public ResponseEntity<?> crear(@Valid @RequestBody CursosDTO cursoDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(cursoService.crear(cursoDTO));

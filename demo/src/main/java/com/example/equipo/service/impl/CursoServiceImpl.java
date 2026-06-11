@@ -43,10 +43,10 @@ public class CursoServiceImpl implements CursoService {
                 c.getId(),
                 c.getTitulo(),
                 c.getDescripcion(),
-                c.getCategoria(),   // ← categoria antes que imagen
+                c.getCategoria(),
                 c.getDuracion(),
                 c.getAutor(),
-                c.getImagen()       // ← imagen al final
+                c.getImagen()
         );
     }
 
