@@ -1,65 +1,44 @@
 package com.example.equipo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "usuarios ")
-public class    Usuarios {
+@Table(name = "usuarios")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Usuarios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String Nombre;
-    private String Correo;
-    private int Contraseña;
+    @Column(nullable = false, length = 100)
+    private String nombre;
 
-    public Usuarios() {
+    @Column(nullable = false, unique = true, length = 100)
+    private String correo; 
+
+    @Column(nullable = false)
+    private String contrasena; 
+
+    @Column(nullable = false, length = 20)
+    private String rol; 
+
+    @Column(nullable = false)
+    private Boolean activo = true;
+
+    @Column(name = "fecha_creacion")
+    private LocalDateTime fechaCreacion;
+
+    @PrePersist
+    public void prePersist() {
+        this.fechaCreacion = LocalDateTime.now();
+        if (this.activo == null) this.activo = true;
     }
-
-    public Usuarios(Integer id, String Nombre, String Correo, int Contraseña) {
-        this.id = id;
-        this.Nombre = Nombre;
-        this.Correo = Correo;
-        this.Contraseña = Contraseña;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
-    public String getCorreo() {
-        return Correo;
-    }
-
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
-    }
-
-    public int getContraseña() {
-        return Contraseña;
-    }
-
-    public void setContraseña(int Contraseña) {
-        this.Contraseña = Contraseña;
-    }
-
-    
 }
